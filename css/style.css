@@ -1,0 +1,349 @@
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  font-family: consolas, monospace;
+  font-weight: 400px;
+  font-size: 16px;
+  color: rgba(18, 38, 89, 1);
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+.game {
+  min-height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.header__title {
+  text-align: center;
+  font-size: 50px;
+  color: black;
+  font-weight: 800;
+}
+
+.game__start {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: 30;
+  background-color: rgb(37, 14, 14);
+  opacity: 0.997;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  pointer-events: all;
+
+}
+
+.game__start-button {
+  display: flex;
+  width: max-content;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.3s;
+
+  border: solid 3px rgb(32, 0, 0);
+  border-radius: 50%;
+  background-color: rgb(92, 0, 0);
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+  padding: 50px;
+
+  font-size: 30px;
+  font-weight: 700;
+
+}
+
+.game__hidden {
+  visibility: hidden;
+}
+
+.game__wrapper {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgb(10, 1, 1);
+  cursor: url(../img/Stas.png), auto;
+}
+
+.game__wrapper:hover .game__counter::after {
+  animation: timer_1 30s steps(60) forwards;
+}
+
+.game__wrapper:hover .game__text span::after {
+  animation: timer_2 30s steps(60) forwards;
+}
+
+.game__body:hover .game__counter::after,
+.game__body:hover .game__text span::after {
+  animation-play-state: paused;
+}
+
+.game__body,
+.game__items {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+
+}
+
+.game__body::before,
+.game__body::after,
+.game__items::before,
+.game__items::after {
+  content: '';
+  width: 20vw;
+  height: 18vw;
+  border-radius: 50%;
+  position: absolute;
+  z-index: 1;
+  pointer-events: all;
+  display: inline-block;
+  top: 0;
+  left: 0;
+}
+
+.game__body::before {
+  background-image: url(../img/zombi_1.png);
+  background-repeat: no-repeat;
+  background-size: 110%;
+  background-position: center;
+  animation: zombi_1 8s infinite;
+}
+
+.game__body::after {
+  background-image: url(../img/zombi_2.png);
+  background-repeat: no-repeat;
+  background-size: 110%;
+  background-position: center;
+  animation: zombi_2 10s infinite;
+}
+
+.game__items::before {
+  background-image: url(../img/zombi_3.png);
+  background-repeat: no-repeat;
+  background-size: 110%;
+  background-position: center;
+  animation: zombi_3 12s infinite;
+}
+
+.game__items::after {
+  background-image: url(../img/zombi_4.png);
+  background-repeat: no-repeat;
+  background-size: 110%;
+  background-position: center;
+  animation: zombi_4 16s infinite;
+}
+
+@keyframes zombi_1 {
+  25% {
+    transform: translate(78vw, 0vh);
+  }
+
+  50% {
+    transform: translate(78vw, 61vh);
+  }
+
+  75% {
+    transform: translate(0vw, 61vh);
+  }
+
+  0%,
+  100% {
+    transform: translate(0px, 0px);
+  }
+}
+
+@keyframes zombi_2 {
+  25% {
+    transform: translate(0vw, 61vh);
+  }
+
+  50% {
+    transform: translate(78vw, 0vh);
+  }
+
+  75% {
+    transform: translate(61vw, 61vh);
+  }
+
+  0%,
+  100% {
+    transform: translate(0px, 0px);
+  }
+}
+
+@keyframes zombi_3 {
+  25% {
+    transform: translate(78vw, 0vh);
+  }
+
+  50% {
+    transform: translate(0vw, 61vh);
+  }
+
+  75% {
+    transform: translate(78vw, 61vh);
+  }
+
+  0%,
+  100% {
+    transform: translate(0px, 0px);
+  }
+}
+
+@keyframes zombi_4 {
+  25% {
+    transform: translate(78vw, 18vh);
+  }
+
+  50% {
+    transform: translate(10vw, 61vh);
+  }
+
+  75% {
+    transform: translate(61vw, 61vh);
+  }
+
+  0%,
+  100% {
+    transform: translate(0px, 0px);
+  }
+}
+
+.game__counter {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  width: 72px;
+  font-size: 26px;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.game__text {
+  font-size: 40px;
+  visibility: hidden;
+}
+
+.game__body:hover .game__text {
+  visibility: visible;
+}
+
+.game__body:hover::before,
+.game__body:hover::after,
+.game__body:hover .game__items::before,
+.game__body:hover .game__items::after {
+  display: none;
+}
+
+.game__body:hover .game__items {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: 20;
+  background-color: blueviolet;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  pointer-events: all;
+}
+
+.game__text span {
+  font-size: 40px;
+  width: 109px;
+  display: inline-block;
+  vertical-align: middle;
+  overflow: hidden;
+
+}
+
+.game__text span::after,
+.game__counter::after {
+  display: block;
+  content: '00:0000:0100:0200:0300:0400:0500:0600:0700:0800:0900:1000:1100:1200:1300:1400:1500:1600:1700:1800:1900:2000:2100:2200:2300:2400:2500:2600:2700:2800:2900:3000:3100:3200:3300:3400:3500:3600:3700:3800:3900:4000:4100:4200:4300:4400:4500:4600:4700:4800:4900:5000:5100:5200:5300:5400:5500:5600:5700:5800:5960:00';
+}
+
+@keyframes timer_1 {
+  0% {
+    text-indent: -300ch;
+  }
+
+  50% {
+    color: orange;
+  }
+
+  100% {
+    color: red;
+    text-indent: 0ch;
+  }
+}
+
+@keyframes timer_2 {
+  0% {
+    text-indent: 0ch;
+  }
+
+  50% {
+    color: orange;
+  }
+
+  100% {
+    color: red;
+    text-indent: -300ch;
+  }
+}
+
+.game__win {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: 20;
+  background-color: rgb(190, 197, 88);
+  background-image: url('../img/win.png');
+  background-repeat: no-repeat;
+  background-size: 600px auto;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 60px;
+  color: gold;
+  visibility: hidden;
+}
+
+@keyframes win {
+  0% {}
+
+  100% {
+    visibility: visible;
+  }
+}
+
+.game__wrapper:hover .game__win {
+  animation: win 30s steps(1) forwards;
+}
